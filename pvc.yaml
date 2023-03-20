@@ -1,23 +1,12 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: local-pvc1
+  name: mypvc
 spec:
-  storageClassName: local-storage
-  accessModes:
-    - ReadWriteOnce
   resources:
     requests:
-      storage: 1050Mi
-
-# kind: PersistentVolumeClaim
-# apiVersion: v1
-# metadata:
-#   name: my-claim
-# spec:
-#   accessModes:
-#   - ReadWriteOnce
-#   storageClassName: my-local-storage
-#   resources:
-#     requests:
-#       storage: 2Gi
+      storage: 300Mi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: manual

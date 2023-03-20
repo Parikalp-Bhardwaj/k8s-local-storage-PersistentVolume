@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: my-deployment
+  labels:
+    app: nginx-app
+    type: frontend
+spec:
+  replicas: 1
+  template:
+    metadata: 
+      name: nginx-pod
+      labels:
+        app: nginx-app
+        type: frontend
+    spec:
+      containers:
+        -  name: nginx-container
+           image: nginx
+           volumeMounts:
+             - name: my-vol
+               mountPath: "/data"
+      volumes:
+        - name: my-vol
+          persistentVolumeClaim:
+            claimName: mypvc
+  
+  selector:
+    matchLabels:
+      type: frontend
